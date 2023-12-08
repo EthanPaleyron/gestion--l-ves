@@ -4,11 +4,11 @@
 /*==============================================================*/
 
 
-drop table if exists CONTIENTS;
+drop table if exists FORME;
 
 drop table if exists FORMATEUR;
 
-drop table if exists FORME;
+drop table if exists ENSEIGNE;
 
 drop table if exists NATIONALLITE;
 
@@ -21,7 +21,7 @@ drop table if exists TYPE_FORMATION;
 /*==============================================================*/
 /* Table : CONTIENTS                                            */
 /*==============================================================*/
-create table CONTIENTS
+create table FORME
 (
    ID_STAGIAIRE         int not null,
    ID_FORMATEUR         int not null,
@@ -45,7 +45,7 @@ create table FORMATEUR
 /*==============================================================*/
 /* Table : FORME                                                */
 /*==============================================================*/
-create table FORME
+create table ENSEIGNE
 (
    ID_FORMATEUR         int not null,
    ID_TYPE_FORMATION    int not null,

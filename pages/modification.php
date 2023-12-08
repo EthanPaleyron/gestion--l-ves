@@ -12,6 +12,9 @@
     <a href="index.php">Retourner au menu</a>
     <h2>Modification</h2>
 
+    <a href="insertion.php">Ajout d'un stagiaire</a>
+    <a href="suppression.php">Suppression d'un stagiaire</a>
+
 </body>
 
 </html>

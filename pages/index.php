@@ -10,11 +10,10 @@
 <body>
 
     <h2>Menu</h2>
-    <ul>
-        <li><a href="insertion.php">Insertion d'élèves</a></li>
-        <li><a href="modification.php">Modification d'élèves</a></li>
-        <li><a href="suppression.php">Suppression d'élèves</a></li>
-    </ul>
+
+    <a href="insertion.php">Ajout d'un stagiaire</a>
+    <a href="modification.php">Modification d'un stagiaire</a>
+    <a href="suppression.php">Suppression d'un stagiaire</a>
 
 </body>
 
