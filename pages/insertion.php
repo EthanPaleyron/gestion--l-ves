@@ -32,9 +32,10 @@
         <label for="formareurs">Formareurs par date :</label>
         <!-- <input type="checkbox" name="formateurs[]" id="formateur_1" value="Robert Dupont"><label for="formateur_1">Robert
             Dupont dans la salle 101</label> -->
-        <label for="date_debut_1">date debut :</label><input type="date" name="date_debut" id="date_debut"
-            value="2024-07-22">
-        <label for="date_fin_1">date fin :</label><input type="date" name="date_fin" id="date_fin" value="2025-07-22">
+        <label for="date_debut_1">date debut :</label><input type="date" name="date_debut" data-metier="developpeur_web"
+            id="date_debut" value="2024-07-22">
+        <label for="date_fin_1">date fin :</label><input type="date" name="date_fin" data-metier="developpeur_web"
+            id="date_fin" value="2025-07-22">
 
         <input type="checkbox" name="formateurs[]" data-metier="web_designer" id="formateur_1"
             value="Robert Dupont"><label for="formateur_1">Robert Dupont</label>
