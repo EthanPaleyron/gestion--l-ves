@@ -95,27 +95,27 @@ create table TYPE_FORMATION
    primary key (ID_TYPE_FORMATION)
 );
 
-ALTER TABLE CONTIENTS ENGINE = InnoDB;
-ALTER TABLE FORMATEUR ENGINE = InnoDB;
 ALTER TABLE FORME ENGINE = InnoDB;
+ALTER TABLE FORMATEUR ENGINE = InnoDB;
+ALTER TABLE ENSEIGNE ENGINE = InnoDB;
 ALTER TABLE NATIONALLITE ENGINE = InnoDB;
 ALTER TABLE SALLE ENGINE = InnoDB;
 ALTER TABLE STAGIAIRE ENGINE = InnoDB;
 ALTER TABLE TYPE_FORMATION ENGINE = InnoDB;
 
-alter table CONTIENTS add constraint FK_CONTIENTS foreign key (ID_FORMATEUR)
+alter table FORME add constraint FK_FORME foreign key (ID_FORMATEUR)
       references FORMATEUR (ID_FORMATEUR) on delete restrict on update restrict;
 
-alter table CONTIENTS add constraint FK_CONTIENTS2 foreign key (ID_STAGIAIRE)
+alter table FORME add constraint FK_FORME2 foreign key (ID_STAGIAIRE)
       references STAGIAIRE (ID_STAGIAIRE) on delete restrict on update restrict;
 
 alter table FORMATEUR add constraint FK_VA foreign key (ID_SALLE)
       references SALLE (ID_SALLE) on delete restrict on update restrict;
 
-alter table FORME add constraint FK_FORME foreign key (ID_TYPE_FORMATION)
+alter table ENSEIGNE add constraint FK_ENSEIGNE foreign key (ID_TYPE_FORMATION)
       references TYPE_FORMATION (ID_TYPE_FORMATION) on delete restrict on update restrict;
 
-alter table FORME add constraint FK_FORME2 foreign key (ID_FORMATEUR)
+alter table ENSEIGNE add constraint FK_ENSEIGNE2 foreign key (ID_FORMATEUR)
       references FORMATEUR (ID_FORMATEUR) on delete restrict on update restrict;
 
 alter table STAGIAIRE add constraint FK_EST_DE foreign key (ID_NATIONALLITE)

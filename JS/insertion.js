@@ -1,7 +1,7 @@
 // CHOIX DI TYPE DE FORMATION
 const formations = document.querySelector("#formations");
 let formation = formations.value;
-formations.addEventListener("change", () => {
+formations.addEventListener("input", () => {
   formation = formations.value;
   formateursAttribuer();
 });
@@ -11,7 +11,7 @@ const formateurs = document.getElementsByName("formateurs[]");
 const champsDates = document.querySelectorAll("[name^='date']");
 function attributeDisabled(e) {
   e.removeAttribute("disabled");
-  if (e.dataset.metier == formation) {
+  if (e.dataset.metier != formation) {
     e.setAttribute("disabled", "");
   }
 }
