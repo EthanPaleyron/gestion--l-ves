@@ -38,11 +38,7 @@ class Stagiaire_manager
         $statement = $this->base->prepare($sql);
         $statement->execute(array("nom" => $stagiaire->getNom(), "prenom" => $stagiaire->getPrenom(), "id_nationalite" => $stagiaire->getIdNationalite(), "id_type_formation" => $stagiaire->getIdFormation()));
         $statement->closeCursor();
-    }
-    public function forme($stagiaire)
-    {
-        $sql = "";
-        // $statement = $this->base->prepare($sql);
+        return $this->base->lastInsertId();
     }
 }
 ?>

@@ -49,7 +49,8 @@
             $formateurManager->numSalle($formateur);
             $formateurManager->idFormation($formateur);
             $formateurManager->forme($formateur);
-            echo '<input type="checkbox" name="formateurs[]" data-metier="' . $formateur->getIdFormation() . '" id="formateur_' . $formateur->getId() . '" value="' . $formateur->getId() . '"><label for="formateur_' . $formateur->getId() . '">' . $formateur->getPrenom() . ' ' . $formateur->getNom() . ' dans la salle ' . $formateur->getSalle() . $formation->getFormation() . '</label>';
+            echo '<input type="checkbox" name="formateurs[]" data-metier="' . $formateur->getIdFormation() . '" id="formateur_' . $formateur->getId() . '" value="' . $formateur->getId() . '"><label for="formateur_' . $formateur->getId() . '">' . $formateur->getPrenom() . ' ' . $formateur->getNom() . ' dans la salle ' . $formateur->getSalle() . '</label>';
+
             echo '<label for="date_debut_' . $formateur->getId() . '">, date debut :</label><input type="date" name="date_debut" data-metier="' . $formateur->getIdFormation() . '" id="date_debut_' . $formateur->getId() . '" value="' . date("Y-m-d") . '">
             
             <label for="date_fin_' . $formateur->getId() . '">, date fin :</label><input type="date" name="date_fin" data-metier="' . $formateur->getIdFormation() . '" id="date_fin_' . $formateur->getId() . '" value="' . date("Y-m-d") . '">';

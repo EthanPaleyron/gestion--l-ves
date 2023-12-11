@@ -65,5 +65,13 @@ class Stagiaire
     {
         return $this->formation;
     }
+    public function setSonIdFormateur($sonIdFormateur): void
+    {
+        $this->sonIdFormateur = $sonIdFormateur;
+    }
+    public function getSonIdFormateur(): int
+    {
+        return $this->sonIdFormateur;
+    }
 }
 ?>
