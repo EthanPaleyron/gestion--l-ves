@@ -54,9 +54,9 @@
     </form>
 
     <a href="insertion.php">Ajout d'un stagiaire</a>
-    <a href="suppression.php">Suppression d'un stagiaire</a>
+    <a href="modification.php">Modification d'un stagiaire</a>
 
-    <script type="module" src="../JS/suppression.js"></script>
+    <script type="module" src="../JS/selection.js"></script>
 </body>
 
 </html>

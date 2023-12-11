@@ -16,8 +16,10 @@
     <form action="../manager/insert.php" method="post" enctype="multipart/form-data">
         <label for="nom">Nom :</label>
         <input type="text" name="nom" id="nom">
+        <br>
         <label for="prenom">Prenom :</label>
         <input type="text" name="prenom" id="prenom">
+        <br>
         <label for="nationalite">Nationalité :</label>
         <select name="id_nationalite" id="nationalite">
             <?php
@@ -30,6 +32,7 @@
             }
             ?>
         </select>
+        <br>
         <label for="formations">Type de la formation :</label>
         <select name="id_formations" id="formations">
             <?php
@@ -40,7 +43,9 @@
             }
             ?>
         </select>
+        <br>
         <label for="formareurs">Formareurs par date :</label>
+        <br>
         <?php
         // RECUPPERATION DES FORMATEURS
         include_once("../objects/formateur.class.php");
@@ -54,7 +59,7 @@
 
             echo '<label for="date_debut_' . $formateur->getId() . '">, date debut :</label><input type="date" name="date_debut" data-metier="' . $formateur->getIdFormation() . '" id="date_debut_' . $formateur->getId() . '" value="' . date("Y-m-d") . '">
             
-            <label for="date_fin_' . $formateur->getId() . '">, date fin :</label><input type="date" name="date_fin" data-metier="' . $formateur->getIdFormation() . '" id="date_fin_' . $formateur->getId() . '" value="' . date("Y-m-d") . '">';
+            <label for="date_fin_' . $formateur->getId() . '">, date fin :</label><input type="date" name="date_fin" data-metier="' . $formateur->getIdFormation() . '" id="date_fin_' . $formateur->getId() . '" value="' . date("Y-m-d") . '"><br>';
         }
         ?>
         <input type="submit" value="Envoyer">
