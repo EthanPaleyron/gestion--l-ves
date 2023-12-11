@@ -7,9 +7,9 @@ $stagiaire->setNom(htmlspecialchars($_POST["nom"]));
 $stagiaire->setPrenom(htmlspecialchars($_POST["prenom"]));
 $stagiaire->setIdNationalite($_POST["id_nationalite"]);
 $stagiaire->setIdFormation($_POST["id_formations"]);
-$stagiaireManager->insert($stagiaire);
+$lastid = $stagiaireManager->insert($stagiaire);
 $dureeFormation = new Formation();
-$dureeFormation->setIdStagiaire($stagiaireManager->insert($stagiaire));
+$dureeFormation->setIdStagiaire($lastid);
 foreach ($_POST["formateurs"] as $value) {
     $dureeFormation->setIdFormateur($value);
     $dureeFormation->setDateDebut($_POST["date_debut"]);

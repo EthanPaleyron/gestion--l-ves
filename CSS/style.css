@@ -4,10 +4,12 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 button,
 a {
   cursor: pointer;
 }
+
 table,
 thead,
 tbody,
@@ -17,6 +19,7 @@ td {
   border: solid 2px;
   border-collapse: collapse;
 }
+
 th,
 td {
   padding: 1rem;
@@ -24,4 +27,4 @@ td {
 
 body {
   font-family: "Roboto", sans-serif;
-}
+}/*# sourceMappingURL=style.css.map */

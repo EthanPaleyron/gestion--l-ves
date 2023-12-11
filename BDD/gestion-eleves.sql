@@ -107,7 +107,7 @@ alter table FORME add constraint FK_FORME foreign key (ID_FORMATEUR)
       references FORMATEUR (ID_FORMATEUR) on delete restrict on update restrict;
 
 alter table FORME add constraint FK_FORME2 foreign key (ID_STAGIAIRE)
-      references STAGIAIRE (ID_STAGIAIRE) on delete restrict on update restrict;
+      references STAGIAIRE (ID_STAGIAIRE) on delete cascade on update restrict;
 
 alter table FORMATEUR add constraint FK_VA foreign key (ID_SALLE)
       references SALLE (ID_SALLE) on delete restrict on update restrict;

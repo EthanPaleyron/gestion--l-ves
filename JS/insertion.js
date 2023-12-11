@@ -9,18 +9,19 @@ formations.addEventListener("input", () => {
 // RETIRATION DES FORMATEUR QUI NE FORME PAS LA FOMATION
 const formateurs = document.getElementsByName("formateurs[]");
 const champsDates = document.querySelectorAll("[name^='date']");
-function attributeDisabled(e) {
-  e.removeAttribute("disabled");
-  if (e.dataset.metier != formation) {
-    e.setAttribute("disabled", "");
-  }
-}
 function formateursAttribuer() {
   formateurs.forEach((formateur) => {
-    attributeDisabled(formateur);
+    formateur.removeAttribute("disabled");
+    if (formateur.dataset.metier != formation) {
+      formateur.checked = false;
+      formateur.setAttribute("disabled", "");
+    }
   });
   champsDates.forEach((champsDate) => {
-    attributeDisabled(champsDate);
+    champsDate.removeAttribute("disabled");
+    if (champsDate.dataset.metier != formation) {
+      champsDate.setAttribute("disabled", "");
+    }
   });
 }
 formateursAttribuer();

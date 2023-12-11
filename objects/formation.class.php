@@ -3,6 +3,7 @@ class Formation
 {
     private int $idStagiaire;
     private int $idFormateur;
+    private Formateur $formateur;
     private $dateDebut;
     private $dateFin;
 
@@ -21,6 +22,14 @@ class Formation
     public function getIdFormateur(): int
     {
         return $this->idFormateur;
+    }
+    public function setFormateur($formateur): void
+    {
+        $this->formateur = $formateur;
+    }
+    public function getFormateur(): Formateur
+    {
+        return $this->formateur;
     }
     public function setDateDebut($dateDebut): void
     {
