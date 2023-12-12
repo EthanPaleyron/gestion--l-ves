@@ -1,6 +1,11 @@
 const stagiaires = document.querySelectorAll("[name='stagiaires[]']");
-document.querySelector("#tickAll").addEventListener("click", () => {
-  stagiaires.forEach((stagiaire) => {
-    stagiaire.checked = true;
+const tickAll = document.querySelector("#tickAll");
+stagiaires.forEach((stagiaire) => {
+  tickAll.addEventListener("click", () => {
+    if (stagiaire.checked == false) {
+      stagiaire.checked = true;
+    } else {
+      stagiaire.checked = false;
+    }
   });
 });

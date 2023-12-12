@@ -35,11 +35,11 @@
                 foreach ($stagiaires as $stagiaire) {
                     echo '<tr>
                     <td><input type="checkbox" name="stagiaires[]" value="' . $stagiaire->getId() . '"></td>
-                    <td><input type="text" name="nom" value="' . $stagiaire->getNom() . '"></td>
-                    <td><input type="text" name="prenom" value="' . $stagiaire->getPrenom() . '"></td>
+                    <td><input type="text" name="nom_' . $stagiaire->getId() . '" value="' . $stagiaire->getNom() . '"></td>
+                    <td><input type="text" name="prenom_' . $stagiaire->getId() . '" value="' . $stagiaire->getPrenom() . '"></td>
                     ';
                     $nationalites = $stagiaireManager->nationalite();
-                    echo '<td><select name="nationalite">';
+                    echo '<td><select name="nationalite_' . $stagiaire->getId() . '">';
                     foreach ($nationalites as $nationalite) {
                         if ($nationalite->getNationalite() !== $stagiaire->getNationalite()) {
                             echo '<option value="' . $nationalite->getIdNationalite() . '">' . $nationalite->getNationalite() . '</option>';
@@ -50,7 +50,7 @@
                     echo '</select></td>';
 
                     $formations = $stagiaireManager->typeFormation();
-                    echo '<td><select name="type_formation">';
+                    echo '<td><select name="type_formation_' . $stagiaire->getId() . '">';
                     foreach ($formations as $formation) {
                         if ($formation->getFormation() === $stagiaire->getFormation()) {
                             echo '<option value="' . $formation->getIdFormation() . '">' . $formation->getFormation() . '</option>';
@@ -66,26 +66,40 @@
                         $formateurManager->numSalle($formateur);
                         $formateurManager->idFormation($formateur);
                         $formateurManager->forme($formateur);
-                        echo '<input type="checkbox" name="formateurs[]" data-metier="' . $formateur->getIdFormation() . '" id="formateur_' . $formateur->getId() . '" value="' . $formateur->getId() . '"><label for="formateur_' . $formateur->getId() . '">' . $formateur->getPrenom() . ' ' . $formateur->getNom() . ' dans la salle ' . $formateur->getSalle() . '</label>';
+                        $echoFormateur = '<input type="checkbox" name="formateurs_' . $stagiaire->getId() . '[]" data-metier="' . $formateur->getIdFormation() . '" id="formateur_' . $stagiaire->getId() . '_' . $formateur->getId() . '" value="' . $formateur->getId() . '"';
 
-                        echo '<label for="date_debut_' . $formateur->getId() . '">, date debut :</label><input type="date" name="date_debut" data-metier="' . $formateur->getIdFormation() . '" id="date_debut_' . $formateur->getId() . '" value="' . date("Y-m-d") . '">
-            
-                        <label for="date_fin_' . $formateur->getId() . '">, date fin :</label><input type="date" name="date_fin" data-metier="' . $formateur->getIdFormation() . '" id="date_fin_' . $formateur->getId() . '" value="' . date("Y-m-d") . '">
-                        <br>';
+                        $dates = $formationManager->affichageDates($stagiaire, $formateur);
+                        if ($dates->getDateDebut() && $dates->getDateFin()) {
+                            $echoFormateur .= 'checked>
+                            <label for="formateur_' . $stagiaire->getId() . '_' . $formateur->getId() . '">' . $formateur->getPrenom() . ' ' . $formateur->getNom() . ' dans la salle ' . $formateur->getSalle() . '</label>
+                            
+                            <label for="date_debut_' . $stagiaire->getId() . '_' . $formateur->getId() . '">, date debut :</label><input type="date" name="date_debut_' . $stagiaire->getId() . '_' . $formateur->getId() . '" data-metier="' . $formateur->getIdFormation() . '" id="date_debut_' . $stagiaire->getId() . '_' . $formateur->getId() . '" value="' . $dates->getDateDebut() . '">
+                            
+                            <label for="date_fin_' . $stagiaire->getId() . '_' . $formateur->getId() . '">, date fin :</label><input type="date" name="date_fin_' . $stagiaire->getId() . '_' . $formateur->getId() . '" data-metier="' . $formateur->getIdFormation() . '" id="date_fin_' . $stagiaire->getId() . '_' . $formateur->getId() . '" value="' . $dates->getDateFin() . '"><br>';
+                        } else {
+                            $echoFormateur .= '>
+                            <label for="formateur_' . $stagiaire->getId() . '_' . $formateur->getId() . '">' . $formateur->getPrenom() . ' ' . $formateur->getNom() . ' dans la salle ' . $formateur->getSalle() . '</label>
+
+                            <label for="date_debut_' . $stagiaire->getId() . '_' . $formateur->getId() . '">, date debut :</label><input type="date" name="date_debut_' . $stagiaire->getId() . '_' . $formateur->getId() . '" data-metier="' . $formateur->getId() . '" id="date_debut_' . $stagiaire->getId() . '_' . $formateur->getId() . '" value="' . date("Y-m-d") . '">
+                            
+                            <label for="date_fin_' . $stagiaire->getId() . '_' . $formateur->getId() . '">, date fin :</label><input type="date" name="date_fin_' . $stagiaire->getId() . '_' . $formateur->getId() . '" data-metier="' . $formateur->getId() . '" id="date_fin_' . $stagiaire->getId() . '_' . $formateur->getId() . '" value="' . date("Y-m-d") . '"><br>';
+                        }
+
+                        echo $echoFormateur;
                     }
                     echo '</tr>';
                 }
                 ?>
             </tbody>
         </table>
-        <button type="button" id="tickAll">Tout selectionner</button>
+        <button type="button" id="tickAll">Tout sélectionner</button>
         <input type="submit" value="Supprimer">
     </form>
 
     <a href="insertion.php">Ajout d'un stagiaire</a>
     <a href="suppression.php">Suppression d'un stagiaire</a>
 
-    <script type="module" src="../JS/insertion.js"></script>
+    <script type="module" src="../JS/modification.js"></script>
     <script type="module" src="../JS/selection.js"></script>
 </body>
 

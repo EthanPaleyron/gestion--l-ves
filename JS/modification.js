@@ -1,9 +1,12 @@
 // CHOIX DI TYPE DE FORMATION
-const formations = document.querySelector("#formations");
-let formation = formations.value;
-formations.addEventListener("input", () => {
-  formation = formations.value;
-  formateursAttribuer();
+const formations = document.querySelectorAll("[name^='type_formation']");
+let formationValue;
+formations.forEach((formation) => {
+  formationValue = formation.value;
+  formation.addEventListener("input", () => {
+    formationValue = formation.value;
+    formateursAttribuer();
+  });
 });
 
 // RETIRATION DES FORMATEUR QUI NE FORME PAS LA FOMATION
@@ -12,14 +15,14 @@ const champsDates = document.querySelectorAll("[name^='date']");
 function formateursAttribuer() {
   formateurs.forEach((formateur) => {
     formateur.removeAttribute("disabled");
-    if (formateur.dataset.metier != formation) {
+    if (formateur.dataset.metier != formationValue) {
       formateur.checked = false;
       formateur.setAttribute("disabled", "");
     }
   });
   champsDates.forEach((champsDate) => {
     champsDate.removeAttribute("disabled");
-    if (champsDate.dataset.metier != formation) {
+    if (champsDate.dataset.metier != formationValue) {
       champsDate.setAttribute("disabled", "");
     }
   });
