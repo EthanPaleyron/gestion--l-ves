@@ -68,6 +68,7 @@
     <a href="suppression.php">Suppression d'un stagiaire</a>
     <a href="modification.php">Modification d'un stagiaire</a>
 
+    <script type="module" src="../JS/dates.js"></script>
     <script type="module" src="../JS/insertion.js"></script>
 </body>
 

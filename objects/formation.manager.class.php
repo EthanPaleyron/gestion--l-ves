@@ -48,5 +48,25 @@ class Formation_manager
         }
         return $dates;
     }
+    public function deleteFormation($formation)
+    {
+        $sql = "DELETE FROM `forme` WHERE";
+        foreach ($formation as $key => $value) {
+            if ($key === 0 || $key === "0") {
+                $sql .= " ID_STAGIAIRE = " . $value;
+            } else {
+                $sql .= " OR ID_STAGIAIRE = " . $value;
+            }
+        }
+        $statement = $this->base->query($sql);
+        $statement->closeCursor();
+    }
+    public function updateFormation($formation)
+    {
+        $sql = "INSERT INTO `forme` (`ID_STAGIAIRE`, `ID_FORMATEUR`, `DATE_DEBUT`, `DATE_FIN`) VALUES (:id_stagiaire, :id_formateur, :date_debut, :date_fin)";
+        $statement = $this->base->prepare($sql);
+        $statement->execute(array("id_stagiaire" => $formation->getIdStagiaire(), "id_formateur" => $formation->getIdFormateur(), "date_debut" => $formation->getDateDebut(), "date_fin" => $formation->getDateFin()));
+        $statement->closeCursor();
+    }
 }
 ?>

@@ -13,7 +13,7 @@
     <a href="index.php">Retourner au menu</a>
     <h2>Modification</h2>
 
-    <form action="../manager/delete.php" method="post" enctype="multipart/form-data">
+    <form action="../manager/update.php" method="post" enctype="multipart/form-data">
         <table>
             <thead>
                 <tr>
@@ -32,14 +32,14 @@
                 include_once("../objects/formateur.class.php");
                 include_once("../objects/formation.class.php");
                 $stagiaires = $stagiaireManager->affichageStagiaire();
-                foreach ($stagiaires as $stagiaire) {
+                foreach ($stagiaires as $key => $stagiaire) {
                     echo '<tr>
                     <td><input type="checkbox" name="stagiaires[]" value="' . $stagiaire->getId() . '"></td>
                     <td><input type="text" name="nom_' . $stagiaire->getId() . '" value="' . $stagiaire->getNom() . '"></td>
                     <td><input type="text" name="prenom_' . $stagiaire->getId() . '" value="' . $stagiaire->getPrenom() . '"></td>
                     ';
                     $nationalites = $stagiaireManager->nationalite();
-                    echo '<td><select name="nationalite_' . $stagiaire->getId() . '">';
+                    echo '<td><select name="id_nationalite_' . $stagiaire->getId() . '">';
                     foreach ($nationalites as $nationalite) {
                         if ($nationalite->getNationalite() !== $stagiaire->getNationalite()) {
                             echo '<option value="' . $nationalite->getIdNationalite() . '">' . $nationalite->getNationalite() . '</option>';
@@ -50,7 +50,7 @@
                     echo '</select></td>';
 
                     $formations = $stagiaireManager->typeFormation();
-                    echo '<td><select name="type_formation_' . $stagiaire->getId() . '">';
+                    echo '<td><select name="id_formations_' . $stagiaire->getId() . '">';
                     foreach ($formations as $formation) {
                         if ($formation->getFormation() === $stagiaire->getFormation()) {
                             echo '<option value="' . $formation->getIdFormation() . '">' . $formation->getFormation() . '</option>';
@@ -59,7 +59,7 @@
                         }
                     }
                     echo '</select></td>
-                    <td>';
+                    <td class="fomateurs" date-key="' . $key . '">';
                     $formateurs = $formateurManager->formateurs();
                     foreach ($formateurs as $formateur) {
                         // RECUPPERATION DES SALLES ET FORMATION
@@ -73,16 +73,16 @@
                             $echoFormateur .= 'checked>
                             <label for="formateur_' . $stagiaire->getId() . '_' . $formateur->getId() . '">' . $formateur->getPrenom() . ' ' . $formateur->getNom() . ' dans la salle ' . $formateur->getSalle() . '</label>
                             
-                            <label for="date_debut_' . $stagiaire->getId() . '_' . $formateur->getId() . '">, date debut :</label><input type="date" name="date_debut_' . $stagiaire->getId() . '_' . $formateur->getId() . '" data-metier="' . $formateur->getIdFormation() . '" id="date_debut_' . $stagiaire->getId() . '_' . $formateur->getId() . '" value="' . $dates->getDateDebut() . '">
+                            <label for="date_debut_' . $formateur->getId() . '">, date debut :</label><input type="date" name="date_debut_' . $formateur->getId() . '" data-metier="' . $formateur->getIdFormation() . '"  id="date_debut_' . $formateur->getId() . '" value="' . $dates->getDateDebut() . '">
                             
-                            <label for="date_fin_' . $stagiaire->getId() . '_' . $formateur->getId() . '">, date fin :</label><input type="date" name="date_fin_' . $stagiaire->getId() . '_' . $formateur->getId() . '" data-metier="' . $formateur->getIdFormation() . '" id="date_fin_' . $stagiaire->getId() . '_' . $formateur->getId() . '" value="' . $dates->getDateFin() . '"><br>';
+                            <label for="date_fin_' . $formateur->getId() . '">, date fin :</label><input type="date" name="date_fin_' . $formateur->getId() . '" data-metier="' . $formateur->getIdFormation() . '"  id="date_fin_' . $formateur->getId() . '" value="' . $dates->getDateFin() . '"><br>';
                         } else {
                             $echoFormateur .= '>
-                            <label for="formateur_' . $stagiaire->getId() . '_' . $formateur->getId() . '">' . $formateur->getPrenom() . ' ' . $formateur->getNom() . ' dans la salle ' . $formateur->getSalle() . '</label>
+                            <label for="formateur_' . $formateur->getId() . '">' . $formateur->getPrenom() . ' ' . $formateur->getNom() . ' dans la salle ' . $formateur->getSalle() . '</label>
 
-                            <label for="date_debut_' . $stagiaire->getId() . '_' . $formateur->getId() . '">, date debut :</label><input type="date" name="date_debut_' . $stagiaire->getId() . '_' . $formateur->getId() . '" data-metier="' . $formateur->getId() . '" id="date_debut_' . $stagiaire->getId() . '_' . $formateur->getId() . '" value="' . date("Y-m-d") . '">
+                            <label for="date_debut_' . $formateur->getId() . '">, date debut :</label><input type="date" name="date_debut_' . $formateur->getId() . '" data-metier="' . $formateur->getId() . '"  id="date_debut_' . $formateur->getId() . '" value="' . date("Y-m-d") . '">
                             
-                            <label for="date_fin_' . $stagiaire->getId() . '_' . $formateur->getId() . '">, date fin :</label><input type="date" name="date_fin_' . $stagiaire->getId() . '_' . $formateur->getId() . '" data-metier="' . $formateur->getId() . '" id="date_fin_' . $stagiaire->getId() . '_' . $formateur->getId() . '" value="' . date("Y-m-d") . '"><br>';
+                            <label for="date_fin_' . $formateur->getId() . '">, date fin :</label><input type="date" name="date_fin_' . $formateur->getId() . '" data-metier="' . $formateur->getId() . '"  id="date_fin_' . $formateur->getId() . '" value="' . date("Y-m-d") . '"><br>';
                         }
 
                         echo $echoFormateur;
@@ -93,12 +93,13 @@
             </tbody>
         </table>
         <button type="button" id="tickAll">Tout sélectionner</button>
-        <input type="submit" value="Supprimer">
+        <input type="submit" value="Modifier">
     </form>
 
     <a href="insertion.php">Ajout d'un stagiaire</a>
     <a href="suppression.php">Suppression d'un stagiaire</a>
 
+    <script type="module" src="../JS/dates.js"></script>
     <script type="module" src="../JS/modification.js"></script>
     <script type="module" src="../JS/selection.js"></script>
 </body>

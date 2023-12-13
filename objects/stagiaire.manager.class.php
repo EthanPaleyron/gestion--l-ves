@@ -66,9 +66,15 @@ class Stagiaire_manager
                 $sql .= " OR ID_STAGIAIRE = " . $idStagiaire;
             }
         }
-        var_dump($sql);
         $delete = $this->base->query($sql);
         $delete->closeCursor();
+    }
+    public function update($stagiaire)
+    {
+        $sql = "UPDATE `stagiaire` SET `ID_TYPE_FORMATION` = :id_type_formation, `ID_NATIONALLITE` = :id_nationalite, `NOM_STAGIAIRE` = :nom, `PRENOM_STAGIAIRE` = :prenom WHERE `stagiaire`.`ID_STAGIAIRE` = :id_stagiaire";
+        $statement = $this->base->prepare($sql);
+        $statement->execute(array("id_stagiaire" => $stagiaire->getId(), "nom" => $stagiaire->getNom(), "prenom" => $stagiaire->getPrenom(), "id_nationalite" => $stagiaire->getIdNationalite(), "id_type_formation" => $stagiaire->getIdFormation()));
+        $statement->closeCursor();
     }
 }
 ?>

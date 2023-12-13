@@ -16,5 +16,5 @@ foreach ($_POST["formateurs"] as $value) {
     $dureeFormation->setDateFin($_POST["date_fin"]);
     $formationManager->enseigne($dureeFormation);
 }
-header("Location: ../pages/index.php");
+header("Location: ../pages/insertion.php");
 ?>
